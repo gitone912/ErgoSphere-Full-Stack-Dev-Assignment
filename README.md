@@ -74,8 +74,6 @@ If your backend server is running correctly, you should see something like this:
 "WSCONNECT /ws/chat/" - -
 ```
 
-**Important**: In order to run the LLM, set your Open AI API key [here](https://github.com/virattt/chat_app/blob/main/backend/.env#L1).
-
 ### 3. Run the frontend app 💻
 
 In a new Terminal window (or tab), navigate to the `frontend` directory:
