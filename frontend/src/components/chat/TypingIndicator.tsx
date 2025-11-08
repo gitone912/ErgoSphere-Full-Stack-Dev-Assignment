@@ -1,36 +1,34 @@
 import React from 'react';
-import '../../css/chat/TypingIndicator.css'
-import styled from "styled-components";
 
 interface TypingIndicatorProps {
   isTyping: boolean;
 }
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%; // Make the container full width
-`;
-
-const InnerContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  width: 40%; // Set a fixed width for the inner container
-`;
-
 const TypingIndicator: React.FC<TypingIndicatorProps> = ({isTyping}) => {
-  if (!isTyping) return <div/>
+  if (!isTyping) return null;
 
   return (
-    <Container>
-      <InnerContainer>
-        <div className={`typing-indicator-container ${isTyping ? 'visible' : 'hidden'}`}>
-          <div className="typing-indicator-dot"/>
-          <div className="typing-indicator-dot"/>
-          <div className="typing-indicator-dot"/>
+    <div className="flex w-full py-4 px-8 justify-start animate-fade-in">
+      <div className="max-w-2xl flex gap-3">
+        {/* Avatar */}
+        <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm shadow-medium bg-gradient-to-br from-neutral-200 to-neutral-300 text-neutral-700">
+          AI
         </div>
-      </InnerContainer>
-    </Container>
+        
+        {/* Typing Indicator Bubble */}
+        <div className="flex flex-col gap-1 items-start">
+          <div className="px-4 py-3 rounded-2xl shadow-soft bg-white text-neutral-800 border border-neutral-200/50 rounded-bl-md">
+            <div className="flex items-center gap-1.5">
+              <div className="flex gap-1.5">
+                <div className="w-2 h-2 rounded-full bg-primary-500 animate-typing-bounce" style={{ animationDelay: '0ms' }}></div>
+                <div className="w-2 h-2 rounded-full bg-primary-500 animate-typing-bounce" style={{ animationDelay: '200ms' }}></div>
+                <div className="w-2 h-2 rounded-full bg-primary-500 animate-typing-bounce" style={{ animationDelay: '400ms' }}></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

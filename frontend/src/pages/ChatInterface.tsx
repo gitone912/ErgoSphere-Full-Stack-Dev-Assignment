@@ -133,21 +133,26 @@ export const ChatInterface: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50">
+    <div className="flex flex-col h-[calc(100vh-73px)] max-w-7xl mx-auto">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-        <h1 className="text-2xl font-semibold text-gray-800">AI Chat Portal</h1>
-        <div className="flex gap-2">
+      <div className="glass border-b border-neutral-200/50 px-8 py-5 flex justify-between items-center shadow-soft">
+        <div>
+          <h1 className="text-3xl font-bold text-neutral-800 mb-1">AI Chat</h1>
+          <p className="text-sm text-neutral-500">
+            {currentConversationId ? `Conversation #${currentConversationId}` : 'Start a new conversation'}
+          </p>
+        </div>
+        <div className="flex gap-3">
           <button
             onClick={handleNewConversation}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-5 py-2.5 bg-gradient-to-r from-primary-600 to-primary-500 text-white rounded-xl font-medium text-sm shadow-medium hover:shadow-glow transition-all duration-200 hover:scale-105 active:scale-95"
           >
             New Conversation
           </button>
           {currentConversationId && (
             <button
               onClick={handleEndConversation}
-              className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+              className="px-5 py-2.5 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl font-medium text-sm shadow-medium hover:shadow-lg transition-all duration-200 hover:scale-105 active:scale-95"
             >
               End Conversation
             </button>
@@ -156,13 +161,15 @@ export const ChatInterface: React.FC = () => {
       </div>
 
       {/* Chat Area */}
-      <div className="flex-1 overflow-hidden">
-        <ChatBox messages={messages} isLoading={loading} />
-        <div ref={messagesEndRef} />
+      <div className="flex-1 overflow-hidden bg-gradient-to-b from-neutral-50/50 to-white">
+        <div className="h-full overflow-y-auto">
+          <ChatBox messages={messages} isLoading={loading} />
+          <div ref={messagesEndRef} />
+        </div>
       </div>
 
       {/* Input Area */}
-      <div className="bg-white border-t border-gray-200 px-6 py-4">
+      <div className="glass border-t border-neutral-200/50 px-8 py-6 shadow-soft">
         <ChatInput 
           onNewUserMessage={onNewUserMessage} 
           onNewChatCreated={(id) => setCurrentConversationId(id)} 
